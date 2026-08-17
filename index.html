@@ -6,50 +6,65 @@
 <title>Onboarding de Cliente</title>
 <style>
   :root {
-    --paper: #faf9f6;
-    --paper-alt: #f0eee7;
+    --paper: #f4f3fb;
+    --paper-alt: #eef0fc;
     --card: #ffffff;
-    --ink: #1c2321;
-    --muted: #6b6558;
-    --line: #ddd8cc;
-    --accent: #2f5d50;
-    --accent-strong: #1f4038;
-    --accent-soft: #e4ede9;
-    --amber: #a8722f;
-    --amber-soft: #f4e9da;
-    --shadow: 0 1px 2px rgba(28, 35, 33, 0.04), 0 8px 24px rgba(28, 35, 33, 0.06);
+    --ink: #1e1b3a;
+    --muted: #6b6f8a;
+    --line: #e2e1f5;
+    --accent: #6366f1;
+    --accent-strong: #4338ca;
+    --accent-soft: #eef0ff;
+    --amber: #f59e0b;
+    --amber-soft: #fef3e0;
+    --teal: #0d9488;
+    --teal-soft: #e6fbf7;
+    --danger: #e11d48;
+    --bg1: #eef2ff;
+    --bg2: #fdf2f8;
+    --shadow: 0 2px 8px rgba(76, 29, 149, 0.06), 0 12px 32px rgba(76, 29, 149, 0.10);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper: #14181a;
-      --paper-alt: #1a1f1d;
-      --card: #1c2321;
-      --ink: #ece8de;
-      --muted: #9a9587;
-      --line: #33392f;
-      --accent: #7ab6a3;
-      --accent-strong: #93cdba;
-      --accent-soft: #223330;
-      --amber: #d7a668;
-      --amber-soft: #332a1c;
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+      --paper: #14121f;
+      --paper-alt: #1b1830;
+      --card: #201c36;
+      --ink: #ece9fb;
+      --muted: #a6a3c4;
+      --line: #35304f;
+      --accent: #a5b4fc;
+      --accent-strong: #c7d2fe;
+      --accent-soft: #2a2650;
+      --amber: #fbbf24;
+      --amber-soft: #3a2e12;
+      --teal: #5eead4;
+      --teal-soft: #123330;
+      --danger: #fb7185;
+      --bg1: #1a1530;
+      --bg2: #1f1224;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.45);
     }
   }
 
   :root[data-theme="dark"] {
-    --paper: #14181a;
-    --paper-alt: #1a1f1d;
-    --card: #1c2321;
-    --ink: #ece8de;
-    --muted: #9a9587;
-    --line: #33392f;
-    --accent: #7ab6a3;
-    --accent-strong: #93cdba;
-    --accent-soft: #223330;
-    --amber: #d7a668;
-    --amber-soft: #332a1c;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --paper: #14121f;
+    --paper-alt: #1b1830;
+    --card: #201c36;
+    --ink: #ece9fb;
+    --muted: #a6a3c4;
+    --line: #35304f;
+    --accent: #a5b4fc;
+    --accent-strong: #c7d2fe;
+    --accent-soft: #2a2650;
+    --amber: #fbbf24;
+    --amber-soft: #3a2e12;
+    --teal: #5eead4;
+    --teal-soft: #123330;
+    --danger: #fb7185;
+    --bg1: #1a1530;
+    --bg2: #1f1224;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.45);
   }
 
   * { box-sizing: border-box; }
@@ -57,6 +72,9 @@
   body {
     margin: 0;
     background: var(--paper);
+    background-image: radial-gradient(circle at 15% 0%, var(--bg1), transparent 55%),
+      radial-gradient(circle at 100% 20%, var(--bg2), transparent 50%);
+    background-attachment: fixed;
     color: var(--ink);
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     padding: 48px 20px 80px;
@@ -74,28 +92,48 @@
   }
 
   .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--teal));
+    flex-shrink: 0;
   }
 
   h1 {
     font-family: ui-serif, Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    font-size: 2rem;
+    font-size: 2.1rem;
     font-weight: 600;
-    margin: 6px 0 0;
+    margin: 8px 0 0;
     text-wrap: balance;
     letter-spacing: -0.01em;
   }
 
   .card {
+    position: relative;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 16px;
     box-shadow: var(--shadow);
     overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--teal), var(--amber));
   }
 
   .client-strip {
@@ -141,8 +179,8 @@
   /* Tabs */
   .tabs {
     display: flex;
-    gap: 0;
-    padding: 0 20px;
+    gap: 6px;
+    padding: 10px 16px;
     background: var(--paper-alt);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
@@ -155,23 +193,23 @@
     font-weight: 600;
     color: var(--muted);
     background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 13px 4px;
-    margin: 0 12px 0 0;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 8px 14px;
     cursor: pointer;
     white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
 
-  .tabs .tab:first-child { margin-left: 0; }
-
   .tab.active {
-    color: var(--accent-strong);
-    border-bottom-color: var(--accent);
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
   }
 
   .tab:hover:not(.active) {
-    color: var(--ink);
+    color: var(--accent-strong);
+    background: var(--accent-soft);
   }
 
   .panel[hidden] { display: none; }
@@ -181,20 +219,35 @@
   /* List screen */
   .checklist-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     padding: 14px 20px;
     border-top: 1px solid var(--line);
     cursor: pointer;
+    transition: background 0.15s ease;
   }
 
   .checklist-row:hover {
-    background: var(--paper-alt);
+    background: var(--accent-soft);
+  }
+
+  .checklist-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
   .checklist-main {
     min-width: 0;
+    flex: 1;
   }
 
   .checklist-client {
@@ -210,14 +263,18 @@
 
   .checklist-progress {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    background: var(--teal-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   .status-error {
-    color: #b3492f;
+    color: var(--danger);
   }
 
   .progress-row {
@@ -226,7 +283,7 @@
     gap: 14px;
     padding: 16px 20px;
     border-bottom: 1px solid var(--line);
-    background: var(--paper-alt);
+    background: var(--accent-soft);
   }
 
   .progress-track {
@@ -240,7 +297,7 @@
   .progress-fill {
     height: 100%;
     width: 0%;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent), var(--teal));
     border-radius: 999px;
     transition: width 0.25s ease;
   }
@@ -254,12 +311,16 @@
   }
 
   .section-title {
-    padding: 18px 20px 4px;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    margin: 18px 20px 4px;
+    padding: 5px 12px;
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    font-weight: 700;
   }
 
   .panel-hint {
@@ -274,8 +335,15 @@
     gap: 4px 12px;
     padding: 12px 20px;
     border-top: 1px solid var(--line);
+    border-left: 3px solid transparent;
     align-items: start;
   }
+
+  .anexo-item.hue-1 { border-left-color: var(--accent); }
+  .anexo-item.hue-2 { border-left-color: var(--teal); }
+  .anexo-item.hue-3 { border-left-color: var(--amber); }
+  .anexo-item.hue-4 { border-left-color: #ec4899; }
+  .anexo-item.hue-5 { border-left-color: #06b6d4; }
 
   .item:first-of-type { border-top: none; }
 
@@ -312,7 +380,7 @@
   }
 
   .card input[type="checkbox"]:checked {
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--teal));
     border-color: var(--accent);
   }
 
@@ -436,16 +504,25 @@
     border: 1px solid var(--line);
     background: var(--card);
     color: var(--ink);
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
   }
 
   button.primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--paper);
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
   }
 
   button:hover {
-    filter: brightness(0.97);
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+
+  button.primary:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -641,31 +718,31 @@
       <div class="print-title">Anexo (Simples Nacional)</div>
       <div class="panel-hint">Selecione um ou mais anexos aplicáveis à atividade do cliente.</div>
 
-      <div class="anexo-item">
+      <div class="anexo-item hue-1">
         <div class="checkbox-wrap"><input type="checkbox" name="anexo" value="I"></div>
         <div class="anexo-title">Anexo I</div>
         <div class="anexo-desc">Comércio</div>
       </div>
 
-      <div class="anexo-item">
+      <div class="anexo-item hue-2">
         <div class="checkbox-wrap"><input type="checkbox" name="anexo" value="II"></div>
         <div class="anexo-title">Anexo II</div>
         <div class="anexo-desc">Indústria</div>
       </div>
 
-      <div class="anexo-item">
+      <div class="anexo-item hue-3">
         <div class="checkbox-wrap"><input type="checkbox" name="anexo" value="III"></div>
         <div class="anexo-title">Anexo III</div>
         <div class="anexo-desc">Serviços — regra geral</div>
       </div>
 
-      <div class="anexo-item">
+      <div class="anexo-item hue-4">
         <div class="checkbox-wrap"><input type="checkbox" name="anexo" value="IV"></div>
         <div class="anexo-title">Anexo IV</div>
         <div class="anexo-desc">Construção civil, vigilância, limpeza, advocacia</div>
       </div>
 
-      <div class="anexo-item">
+      <div class="anexo-item hue-5">
         <div class="checkbox-wrap"><input type="checkbox" name="anexo" value="V"></div>
         <div class="anexo-title">Anexo V</div>
         <div class="anexo-desc">Serviços intelectuais — sujeito ao Fator R</div>
@@ -882,6 +959,24 @@
     return d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
   }
 
+  const AVATAR_HUES = [
+    ['#6366f1', '#4338ca'], ['#0d9488', '#0f766e'], ['#f59e0b', '#d97706'],
+    ['#ec4899', '#db2777'], ['#06b6d4', '#0891b2'], ['#8b5cf6', '#7c3aed']
+  ];
+
+  function initialsOf(name) {
+    const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return '?';
+    return (parts[0][0] + (parts[1] ? parts[1][0] : '')).toUpperCase();
+  }
+
+  function avatarGradientFor(name) {
+    let hash = 0;
+    for (let i = 0; i < (name || '').length; i++) hash = (hash * 31 + name.charCodeAt(i)) | 0;
+    const [c1, c2] = AVATAR_HUES[Math.abs(hash) % AVATAR_HUES.length];
+    return 'linear-gradient(135deg, ' + c1 + ', ' + c2 + ')';
+  }
+
   function renderList(records) {
     cachedRecords = records;
     checklistList.innerHTML = '';
@@ -898,6 +993,12 @@
     records.forEach(record => {
       const row = document.createElement('div');
       row.className = 'checklist-row';
+
+      const avatar = document.createElement('div');
+      avatar.className = 'checklist-avatar';
+      avatar.style.background = avatarGradientFor(record.criado_por || '');
+      avatar.textContent = initialsOf(record.criado_por);
+      row.appendChild(avatar);
 
       const main = document.createElement('div');
       main.className = 'checklist-main';
