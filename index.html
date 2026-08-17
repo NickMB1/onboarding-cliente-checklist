@@ -597,6 +597,8 @@
 
     <div class="tabs">
       <button class="tab active" data-tab="checklist">Checklist</button>
+      <button class="tab" data-tab="abertura">Data de abertura</button>
+      <button class="tab" data-tab="competencia">A partir da competência</button>
       <button class="tab" data-tab="socio">Sócio administrador</button>
       <button class="tab" data-tab="funcionarios">Funcionários</button>
       <button class="tab" data-tab="anexo" id="anexoTab" hidden>Anexo (Simples Nacional)</button>
@@ -678,6 +680,26 @@
         <div class="checkbox-wrap"><input type="checkbox" data-check></div>
         <div class="item-label">Inscrição municipal</div>
         <div class="item-note"><input type="text" placeholder="Número ou 'isento'"></div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="abertura" hidden>
+      <div class="print-title">Data de abertura</div>
+      <div class="panel-pad">
+        <div class="field-block">
+          <label for="dataAbertura">Data de abertura da empresa</label>
+          <input id="dataAbertura" type="text" placeholder="DD/MM/AAAA">
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="competencia" hidden>
+      <div class="print-title">A partir da competência</div>
+      <div class="panel-pad">
+        <div class="field-block">
+          <label for="competenciaInicial">Atendimento a partir da competência</label>
+          <input id="competenciaInicial" type="text" placeholder="MM/AAAA">
+        </div>
       </div>
     </div>
 
@@ -895,6 +917,8 @@
       nome_cliente: document.getElementById('nome').value.trim(),
       cnpj: document.getElementById('cnpj').value.trim(),
       itens,
+      data_abertura: document.getElementById('dataAbertura').value,
+      competencia_inicial: document.getElementById('competenciaInicial').value,
       socio: {
         nome: document.getElementById('socioNome').value,
         cpf: document.getElementById('socioCpf').value,
@@ -925,6 +949,9 @@
       el.classList.toggle('done', checkbox.checked);
       if (noteField) noteField.value = rec.valor || '';
     });
+
+    document.getElementById('dataAbertura').value = dados.data_abertura || '';
+    document.getElementById('competenciaInicial').value = dados.competencia_inicial || '';
 
     const socio = dados.socio || {};
     document.getElementById('socioNome').value = socio.nome || '';
@@ -1069,7 +1096,14 @@
       nome_cliente: form.nome_cliente,
       cnpj: form.cnpj,
       atualizado_por: userName,
-      dados: { itens: form.itens, socio: form.socio, funcionarios: form.funcionarios, anexos: form.anexos }
+      dados: {
+        itens: form.itens,
+        data_abertura: form.data_abertura,
+        competencia_inicial: form.competencia_inicial,
+        socio: form.socio,
+        funcionarios: form.funcionarios,
+        anexos: form.anexos
+      }
     };
 
     saveStatus.textContent = 'Salvando...';
